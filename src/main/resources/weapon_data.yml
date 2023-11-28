@@ -1,0 +1,10 @@
+weapon:
+  1:
+    name: "AK103"
+    bulletRises: [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
+    bulletRate: 10
+  2:
+    name: "M4A1"
+    bulletRises: [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+    bulletRate: 8
+xOffset: true

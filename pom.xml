@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.piggy</groupId>
+    <artifactId>mouse_macro</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <!-- jNativeHook实现本地全局键鼠监控-->
+        <dependency>
+            <groupId>com.1stleg</groupId>
+            <artifactId>jnativehook</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!-- 添加SnakeYAML依赖 -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.27</version> <!-- 使用最新版本 -->
+        </dependency>
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <!-- SLF4J API Module -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <!-- ... 其他配置 ... -->
+
+    <build>
+        <!-- 项目最终打包成的名字 -->
+        <finalName>mouse_macro</finalName>
+        <plugins>
+            <!-- 指定maven编译的jdk版本,如果不指定,maven3默认用jdk 1.5 maven2默认用jdk1.3 -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- 使用maven-shade-plugin打包，可同时将依赖包一同打包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 默认true，会生成dependency-reduced-pom，以确保其他项目依赖该项目时不会重复依赖，此项目不需要 -->
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <transformers>
+                                <!-- 指定启动类 -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.piggy.controller.MacroController</mainClass>
+                                </transformer>
+
+                                <!-- 下面的配置仅针对存在同名资源文件的情况，如没有则不用配置-->
+                                <!-- 有些项目包可能会包含同文件名的资源文件（例如属性文件）-->
+                                <!-- 为避免覆盖，可以将它们的内容合并到一个文件中 -->
+<!--                                <transformer-->
+<!--                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+<!--                                    <resource>META-INF/spring.handlers</resource>-->
+<!--                                </transformer>-->
+<!--                                <transformer-->
+<!--                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+<!--                                    <resource>META-INF/spring.schemas</resource>-->
+<!--                                </transformer>-->
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 打包跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
