@@ -126,10 +126,10 @@ public class MacroController {
     }
 
     public static void rightMousePressed() {
-        logger.info("鼠标右键键已按下");
+//        logger.info("鼠标右键键已按下");
     }
 
     public static void rightMouseReleased() {
-        logger.info("鼠标右键已释放");
+//        logger.info("鼠标右键已释放");
     }
 }

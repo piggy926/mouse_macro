@@ -30,9 +30,11 @@ public class GlobalMouseListener implements NativeMouseInputListener {
      * 鼠标按下
      */
     public void nativeMousePressed(NativeMouseEvent e) {
-        switch (e.getButton()){
-            case 1 : MacroController.leftMousePressed(); break;
-            case 2 : MacroController.rightMousePressed();
+        int button = e.getButton();
+        if (button == 1) {
+            MacroController.leftMousePressed();
+//        } else if (button == 2) {
+//            MacroController.rightMousePressed();
         }
 
     }
@@ -41,9 +43,11 @@ public class GlobalMouseListener implements NativeMouseInputListener {
      * 鼠标松开
      */
     public void nativeMouseReleased(NativeMouseEvent e) {
-        switch (e.getButton()){
-            case 1 : MacroController.leftMouseReleased(); break;
-            case 2 : MacroController.rightMouseReleased();
+        int button = e.getButton();
+        if (button == 1) {
+            MacroController.leftMouseReleased();
+//        } else if (button == 2) {
+//            MacroController.rightMouseReleased();
         }
     }
 
