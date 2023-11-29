@@ -11,5 +11,7 @@ weapon:
     name: "GALIL"
     bulletRises: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
     bulletRate: 15
-xOffset: true
-dynamicLoading: false
+# x轴偏移(true,false)
+xOffset: false
+# 动态加载配置(true,false)，重启生效
+dynamicLoading: ture
