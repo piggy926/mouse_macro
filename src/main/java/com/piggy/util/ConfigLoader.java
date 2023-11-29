@@ -56,7 +56,7 @@ public class ConfigLoader {
                 try {
                     inputStream.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error("流关闭失败",e);
                 }
             }
         }

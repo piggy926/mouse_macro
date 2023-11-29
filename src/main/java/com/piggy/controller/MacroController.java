@@ -35,9 +35,12 @@ public class MacroController {
         }
         MacroConfig.running = true;
         CompletableFuture.runAsync(() -> {
+            // 每发子弹上扬像素
             List<Integer> bulletRises = MacroConfig.currentWeapon.getBulletRises();
+            // 子弹射速间隔
             int bulletRate = MacroConfig.currentWeapon.getBulletRate();
             for (int rise : bulletRises) {
+                // 是否偏移x轴
                 int offset = 0;
                 if (MacroConfig.weaponRoot.isxOffset()){
                     offset = MacroUtil.getRandomOffset();
