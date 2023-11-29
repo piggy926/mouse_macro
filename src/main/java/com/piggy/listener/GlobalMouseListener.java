@@ -1,5 +1,6 @@
 package com.piggy.listener;
 
+import com.piggy.config.MacroConfig;
 import com.piggy.controller.MacroController;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseInputListener;
@@ -32,7 +33,8 @@ public class GlobalMouseListener implements NativeMouseInputListener {
     public void nativeMousePressed(NativeMouseEvent e) {
         int button = e.getButton();
         if (button == 1) {
-            MacroController.leftMousePressed();
+            // 开火
+            MacroController.openFire();
 //        } else if (button == 2) {
 //            MacroController.rightMousePressed();
         }
@@ -45,7 +47,8 @@ public class GlobalMouseListener implements NativeMouseInputListener {
     public void nativeMouseReleased(NativeMouseEvent e) {
         int button = e.getButton();
         if (button == 1) {
-            MacroController.leftMouseReleased();
+            MacroConfig.running = false;
+//            MacroController.leftMouseReleased();
 //        } else if (button == 2) {
 //            MacroController.rightMouseReleased();
         }

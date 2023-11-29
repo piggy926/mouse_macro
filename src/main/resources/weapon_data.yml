@@ -12,3 +12,4 @@ weapon:
     bulletRises: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
     bulletRate: 15
 xOffset: true
+dynamicLoading: false

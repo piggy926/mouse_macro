@@ -73,7 +73,7 @@
                             <transformers>
                                 <!-- 指定启动类 -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.piggy.controller.MacroController</mainClass>
+                                    <mainClass>com.piggy.MacroApplication</mainClass>
                                 </transformer>
 
                                 <!-- 下面的配置仅针对存在同名资源文件的情况，如没有则不用配置-->

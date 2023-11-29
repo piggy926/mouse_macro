@@ -1,5 +1,6 @@
 package com.piggy.listener;
 
+import com.piggy.config.MacroConfig;
 import com.piggy.controller.MacroController;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
@@ -20,16 +21,22 @@ public class GlobalKeyListener implements NativeKeyListener {
      * 键盘按下
      */
     public void nativeKeyPressed(NativeKeyEvent e) {
+        // 按下ctrl
+        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
+            MacroConfig.ctrlIsPress = true;
+        }
         // 切换武器
-        MacroController.switchWeapon(e.getKeyCode(),true);
+        MacroController.switchWeapon(e.getKeyCode());
     }
 
     /**
-     * 键盘按下
+     * 键盘释放
      */
     public void nativeKeyReleased(NativeKeyEvent e) {
-//        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
-        MacroController.switchWeapon(e.getKeyCode(),false);
+        // 松开ctrl
+        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL){
+            MacroConfig.ctrlIsPress = false;
+        }
     }
 
     public void nativeKeyTyped(NativeKeyEvent e) {
