@@ -25,6 +25,9 @@ public class GlobalKeyListener implements NativeKeyListener {
         if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
             MacroConfig.ctrlIsPress = true;
         }
+        if (e.getKeyCode() == NativeKeyEvent.VC_ALT) {
+            MacroConfig.altIsPress = true;
+        }
         // 切换武器
         MacroController.switchWeapon(e.getKeyCode());
     }
@@ -36,6 +39,9 @@ public class GlobalKeyListener implements NativeKeyListener {
         // 松开ctrl
         if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL){
             MacroConfig.ctrlIsPress = false;
+        }
+        if (e.getKeyCode() == NativeKeyEvent.VC_ALT) {
+            MacroConfig.altIsPress = false;
         }
     }
 

@@ -16,5 +16,7 @@ public class MacroConfig {
     public static boolean running = false;
     // ctrl是否按下
     public static boolean ctrlIsPress = false;
+    // alt是否按下
+    public static boolean altIsPress = false;
 
 }

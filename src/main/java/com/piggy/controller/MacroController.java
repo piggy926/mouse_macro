@@ -37,6 +37,7 @@ public class MacroController {
         CompletableFuture.runAsync(() -> {
             // 每发子弹上扬像素
             List<Integer> bulletRises = MacroConfig.currentWeapon.getBulletRises();
+            if (MacroConfig.ctrlIsPress) bulletRises =  MacroConfig.currentWeapon.getCrouch();
             // 子弹射速间隔
             int bulletRate = MacroConfig.currentWeapon.getBulletRate();
             for (int rise : bulletRises) {
@@ -64,13 +65,13 @@ public class MacroController {
      */
     public static void switchWeapon(int code){
         // 武器归零
-        if (MacroConfig.ctrlIsPress && code == NativeKeyEvent.VC_0) {
+        if (MacroConfig.altIsPress && code == NativeKeyEvent.VC_0) {
             logger.info("武器配置已清空!");
             MacroConfig.currentWeapon = null;
             return;
         }
         // 切换武器配置
-        if (MacroConfig.ctrlIsPress && code <= NativeKeyEvent.VC_0 && code >= NativeKeyEvent.VC_1){
+        if (MacroConfig.altIsPress && code <= NativeKeyEvent.VC_0 && code >= NativeKeyEvent.VC_1){
             Map<Integer, WeaponData> weapon = MacroConfig.weaponRoot.getWeapon();
             if (code - 1 > weapon.size()){
                 logger.info("未配置该武器！");

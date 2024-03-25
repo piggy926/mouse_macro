@@ -1,7 +1,10 @@
 package com.piggy.pojo;
 
+import lombok.Data;
+
 import java.util.Map;
 
+@Data
 public class WeaponRoot {
     private Map<Integer, WeaponData> weapon;
     private boolean xOffset;
