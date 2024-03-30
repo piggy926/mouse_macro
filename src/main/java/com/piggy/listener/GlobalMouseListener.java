@@ -32,11 +32,17 @@ public class GlobalMouseListener implements NativeMouseInputListener {
      */
     public void nativeMousePressed(NativeMouseEvent e) {
         int button = e.getButton();
-        if (button == 1) {
+        // 没有武器时，不触发
+        if (null == MacroConfig.currentWeapon){
+            return;
+        }
+        MacroConfig.running = true;
+        if (button == 1 && MacroConfig.currentWeapon.getShootMode().equals("fullAuto")) {// 鼠标左键
             // 开火
             MacroController.openFire();
-//        } else if (button == 2) {
-//            MacroController.rightMousePressed();
+        } else if (button == 2 && MacroConfig.currentWeapon.getShootMode().equals("rapidFire")) {// 鼠标右键
+            // rapidFire:快速点射
+            MacroController.fixedFire();
         }
 
     }
@@ -45,12 +51,15 @@ public class GlobalMouseListener implements NativeMouseInputListener {
      * 鼠标松开
      */
     public void nativeMouseReleased(NativeMouseEvent e) {
-        int button = e.getButton();
-        if (button == 1) {
+        if (MacroConfig.currentWeapon == null){
             MacroConfig.running = false;
-//            MacroController.leftMouseReleased();
-//        } else if (button == 2) {
-//            MacroController.rightMouseReleased();
+            return;
+        }
+        int button = e.getButton();
+        if (button == 1 && MacroConfig.currentWeapon.getShootMode().equals("fullAuto")) {
+            MacroConfig.running = false;
+        } else if (button == 2 && MacroConfig.currentWeapon.getShootMode().equals("rapidFire")) {
+            MacroConfig.running = false;
         }
     }
 

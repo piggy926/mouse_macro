@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 
 public class MyRobot {
     private static final Logger logger = LoggerFactory.getLogger(MyRobot.class);
@@ -35,5 +36,13 @@ public class MyRobot {
 
         // 鼠标移动到新的位置
         robot.mouseMove(currentX + x, currentY + y);
+    }
+
+    public void pressLeft(){
+        robot.mousePress(InputEvent.BUTTON1_MASK);//按下鼠标左键
+    }
+
+    public void releaseLeft(){
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);//松开鼠标左键
     }
 }
