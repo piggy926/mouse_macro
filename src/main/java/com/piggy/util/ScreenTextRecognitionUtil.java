@@ -1,7 +1,7 @@
 package com.piggy.util;
 
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
+//import net.sourceforge.tess4j.Tesseract;
+//import net.sourceforge.tess4j.TesseractException;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,34 +14,34 @@ import java.io.IOException;
  */
 public class ScreenTextRecognitionUtil {
 
-    public static void main(String[] args) {
-        // 创建一个Tesseract实例
-        Tesseract tesseract = new Tesseract();
-        try {
-            // 设置Tesseract的训练数据路径
-            tesseract.setDatapath("D:\\Sundries\\Ai");
-
-            //设置训练语言
-//            tesseract.setLanguage("eng");
-
-            long startTime = System.currentTimeMillis();
-            // 截取屏幕右下角区域
-            screenCapture();
-            // 读取截图
-            File file = new File("src/main/resources/screenshot.png");
-//            File file = new File("src/main/resources/test.jpg");
-
-            // OCR识别
-            String result = tesseract.doOCR(file);
-
-            // 输出识别结果
-            long endTime = System.currentTimeMillis();
-            System.out.println("result:\n"+result);
-            System.out.println("用时:"+(endTime-startTime));
-        } catch (TesseractException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        // 创建一个Tesseract实例
+//        Tesseract tesseract = new Tesseract();
+//        try {
+//            // 设置Tesseract的训练数据路径
+//            tesseract.setDatapath("D:\\Sundries\\Ai");
+//
+//            //设置训练语言
+////            tesseract.setLanguage("eng");
+//
+//            long startTime = System.currentTimeMillis();
+//            // 截取屏幕右下角区域
+//            screenCapture();
+//            // 读取截图
+//            File file = new File("src/main/resources/screenshot.png");
+////            File file = new File("src/main/resources/test.jpg");
+//
+//            // OCR识别
+//            String result = tesseract.doOCR(file);
+//
+//            // 输出识别结果
+//            long endTime = System.currentTimeMillis();
+//            System.out.println("result:\n"+result);
+//            System.out.println("用时:"+(endTime-startTime));
+//        } catch (TesseractException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void screenCapture(){
         try {
